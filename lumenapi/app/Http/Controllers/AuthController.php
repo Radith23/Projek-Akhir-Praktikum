@@ -56,16 +56,16 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'Error',
                 'message' => 'Mahasiswa not exist',
-                'data' => [
-                    'Mahasiswa' => $mahasiswa->toArray()
-                ]
+                // 'data' => [
+                //     'Mahasiswa' => $mahasiswa->toArray()
+                // ]
             ], 404);
         }
         
         if(!Hash::check($password, $mahasiswa->password)){
             return response()->json([
                 'status' => 'Error',
-                'message' => 'Password Salah',
+                'message' => 'Wrong Password',
                 // 'data' => [
                 //     'Mahasiswa' => $mahasiswa
                 // ]
