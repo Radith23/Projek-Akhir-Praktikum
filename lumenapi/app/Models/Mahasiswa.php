@@ -28,7 +28,8 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
         'nim', 
         'nama', 
         'angkatan', 
-        'password'
+        'password',
+        'token'
     ];
 
     /**

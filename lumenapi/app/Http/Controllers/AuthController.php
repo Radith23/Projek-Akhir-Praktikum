@@ -56,9 +56,6 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'Error',
                 'message' => 'Mahasiswa not exist',
-                // 'data' => [
-                //     'Mahasiswa' => $mahasiswa->toArray()
-                // ]
             ], 404);
         }
         
@@ -66,25 +63,22 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'Error',
                 'message' => 'Wrong Password',
-                // 'data' => [
-                //     'Mahasiswa' => $mahasiswa
-                // ]
             ], 400); 
         }
 
-        // $jwt = $this->jwt(
-        //     [
-        //         'alg' => 'HS256',
-        //         'typ' => 'JWT'
-        //     ],
-        //     [
-        //         'nim' => $mahasiswa->nim,
-        //     ],
-        //         'secret',30
-        // );
+        $jwt = $this->jwt(
+            [
+                'alg' => 'HS256',
+                'typ' => 'JWT'
+            ],
+            [
+                'nim' => $mahasiswa->nim,
+            ],
+                'secret'
+        );
 
-        // $mahasiswa->token = $jwt; //
-        // $mahasiswa->save(); //
+        $mahasiswa->token = $jwt; //
+        $mahasiswa->save(); //
 
         return response()->json([
             'status' => 'Berhasil',

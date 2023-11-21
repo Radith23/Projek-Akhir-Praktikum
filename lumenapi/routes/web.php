@@ -26,3 +26,10 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('/login', ['uses' => 'AuthController@login']);
 });
 
+$router->get('/mahasiswa', 'MahasiswaController@getMahasiswa');
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('/mahasiswa/profile', 'MahasiswaController@getMahasiswaByToken');
+});
+
+$router->get('/prodi', 'ProdiController@getProdi');

@@ -17,8 +17,14 @@ class ProdiController extends Controller
         //
     }
 
-    public function createProdi(Request $request)
+    public function getProdi(Request $request)
     {
-        
+        $prodi = Prodi::all();
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Data prodi berhasil ditampilkan',
+            'prodi' => $prodi
+        ], 200);
     }
 }

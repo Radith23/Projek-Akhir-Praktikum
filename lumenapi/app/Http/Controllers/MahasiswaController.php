@@ -18,5 +18,24 @@ class MahasiswaController extends Controller
         //
     }
 
-    
+    public function getMahasiswa(Request $request) {
+        $mahasiswa = Mahasiswa::all();
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Seluruh data mahasiswa tertampil',
+            'data' => [
+                'mahasiswa' => $mahasiswa
+            ]
+        ], 200);
+    }
+
+    public function getMahasiswaByToken(Request $request) {
+        $mahasiswa = $request->mahasiswa;
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Selamat Datang ' . $mahasiswa->nama,
+        ], 200);
+    }
 }
