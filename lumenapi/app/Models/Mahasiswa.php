@@ -24,9 +24,9 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
      public $incrementing = false; //Untuk memunculkan nim yang sesuai pada response 
 
     protected $fillable = [
-        'prodi_Id',
         'nim', 
-        'nama', 
+        'nama',
+        'prodi_Id',
         'angkatan', 
         'password',
         'token'
