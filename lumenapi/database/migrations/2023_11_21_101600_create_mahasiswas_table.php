@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->string('nim')->primary();
-            $table->unsignedBigInteger('prodiId');
+            $table->string('nim', 15)->primary();
+            $table->unsignedBigInteger('prodi_Id');
             $table->string('nama');
             $table->integer('angkatan');
             $table->string('password');
 
-            $table->foreign('prodiId')->references('id')->on('prodis');
+            $table->foreign('prodi_Id')->references('id')->on('prodis');
         });
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
@@ -18,17 +18,8 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
      *
      * @var string[]
      */
-
-     protected $primaryKey = 'nim';
-     public $timestamps = false; //Untuk menghilangkan record yang dibuat secara default
-     public $incrementing = false; //Untuk memunculkan nim yang sesuai pada response 
-
     protected $fillable = [
-        'prodi_Id',
-        'nim', 
-        'nama', 
-        'angkatan', 
-        'password'
+        'name', 'email',
     ];
 
     /**
@@ -37,11 +28,6 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
      * @var string[]
      */
     protected $hidden = [
-        'password'
+        'password',
     ];
-
-    public function prodi()
-    {
-        return $this->belongsTo(Prodi::class, 'prodi_Id');
-    }
 }
