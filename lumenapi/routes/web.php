@@ -26,7 +26,7 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('/login', ['uses' => 'AuthController@login']);
 });
 
-$router->get('/mahasiswa', 'MahasiswaController@getMahasiswa');
+$router->get('/mahasiswa', 'MahasiswaController@getAllMahasiswa');
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/mahasiswa/profile', 'MahasiswaController@getMahasiswaByToken');

@@ -26,7 +26,7 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
     protected $fillable = [
         'nim', 
         'nama',
-        'prodi_Id',
+        'prodiId',
         'angkatan', 
         'password',
         'token'
@@ -43,6 +43,6 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
 
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class, 'prodi_Id');
+        return $this->belongsTo(Prodi::class, 'prodiId');
     }
 }

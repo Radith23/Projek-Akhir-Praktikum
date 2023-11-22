@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use App\Models\Mahasiswa;
 use Closure;
 
@@ -23,7 +24,50 @@ class Authorization
                 'message' => 'token not provided',
             ], 400);
         }
-        
+        //
+        [
+            $header_base64url,
+            $payload_base64url,
+            $signature_base64url
+        ] = explode('.', $token);
+
+        $header = $this->base64url_decode($header_base64url);
+        $json_header = json_decode($header);
+
+        if (!$json_header->alg || $json_header->alg !== 'HS256') {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'type of token not valid',
+            ], 401);
+        }
+
+        if (!$json_header->typ || $json_header->typ !== 'JWT') {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'type of token not valid',
+            ], 401);
+        }
+
+        $payload = $this->base64url_decode($payload_base64url);
+        $json_payload = json_decode($payload);
+        if (!$json_payload->nim) {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'invalid token',
+            ], 400);
+            ;
+        }
+
+        $verified = $this->verify($signature_base64url, $header_base64url, $payload_base64url, 'secret');
+        if (!$verified) {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'invalid sign token',
+            ], 400);
+            ;
+        }
+
+        $nim = $json_payload->nim;
         $mahasiswa = Mahasiswa::where('token', $token)->first();
         //
         if (!$mahasiswa) {

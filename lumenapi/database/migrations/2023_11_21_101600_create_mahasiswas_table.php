@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->string('nim', 15)->primary();
-            $table->unsignedBigInteger('prodi_Id');
+            $table->unsignedBigInteger('prodiId');
             $table->string('nama');
             $table->integer('angkatan');
             $table->string('password');
 
-            $table->foreign('prodi_Id')->references('id')->on('prodis');
+            $table->foreign('prodiId')->references('id')->on('prodis');
         });
     }
 

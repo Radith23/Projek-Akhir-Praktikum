@@ -30,7 +30,7 @@ class AuthController extends Controller
             'nim' => $request->nim,
             'nama' => $request->nama,
             'angkatan' => $request->angkatan,
-            'prodi_Id' => $request->prodi_Id,
+            'prodiId' => $request->prodiId,
             'password' => Hash::make($request->password)
         ]);
 
@@ -83,9 +83,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'Berhasil',
             'message' => 'Mahasiswa berhasil login',
-            'data' => [
-                'Mahasiswa' => $mahasiswa
-            ]
+            'token' => $mahasiswa->token
         ], 200);
     }
 
