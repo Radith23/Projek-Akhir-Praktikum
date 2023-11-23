@@ -30,6 +30,12 @@ $router->get('/mahasiswa', 'MahasiswaController@getAllMahasiswa');
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/mahasiswa/profile', 'MahasiswaController@getMahasiswaByToken');
+    $router->post('/mahasiswa/matakuliah/{mkId}', 'MataKuliahController@postMataKuliah');
+    $router->put('/mahasiswa/matakuliah/{mkId}', 'MataKuliahController@putMataKuliah');
 });
 
-$router->get('/prodi', 'ProdiController@getProdi');
+$router->get('/mahasiswa/{nim}', 'MahasiswaController@getMahasiswaByNim');
+
+$router->get('/prodi', 'ProdiController@getAllProdi');
+
+$router->get('/matakuliah', 'MataKuliahController@getAllMataKuliah');

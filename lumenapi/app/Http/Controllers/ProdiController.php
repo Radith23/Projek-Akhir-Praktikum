@@ -17,7 +17,8 @@ class ProdiController extends Controller
         //
     }
 
-    public function getProdi(Request $request)
+    // Get All Prodi
+    public function getAllProdi(Request $request)
     {
         $prodi = Prodi::all();
 

@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-// use Firebase\JWT\JWT;
-
 class AuthController extends Controller
 {
     /**
@@ -25,7 +23,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
         $mahasiswa = Mahasiswa::create([
             'nim' => $request->nim,
             'nama' => $request->nama,
@@ -34,7 +31,6 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        
         return response()->json([
             'status' => 'Berhasil',
             'message' => 'Berhasil Register',
@@ -43,9 +39,8 @@ class AuthController extends Controller
             ]
         ], 200);
     }
-    
 
-    public function login (Request $request)
+    public function login(Request $request)
     {
         $nim = $request->nim;
         $password = $request->password;
