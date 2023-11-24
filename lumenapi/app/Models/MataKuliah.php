@@ -16,7 +16,6 @@ class MataKuliah extends Model
 
     protected $fillable = [
         'nama',
-        'token'
     ];
 
     /**

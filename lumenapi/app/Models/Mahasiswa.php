@@ -30,7 +30,7 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
         'prodiId',
         'angkatan', 
         'password',
-        'token'
+        
     ];
 
     /**
@@ -39,7 +39,7 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
      * @var string[]
      */
     protected $hidden = [
-        'password'
+        'password', 'token'
     ];
 
     public function prodi()
@@ -47,8 +47,8 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
         return $this->belongsTo(Prodi::class, 'prodiId');
     }
 
-    public function matakuliahs()
+    public function matakuliah()
     {
-        return $this->belongsToMany(Mahasiswa::class, 'mahasiswa_matakuliah', 'mkId', 'mhsNim');
+        return $this->belongsToMany(MataKuliah::class, 'mahasiswa_matakuliah', 'mhsNim', 'mkId');
     }
 }

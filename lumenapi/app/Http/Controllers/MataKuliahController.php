@@ -19,7 +19,7 @@ class MataKuliahController extends Controller
     }
 
     // Get All Matkul
-    public function getAllMataKuliah(Request $request)
+    public function getAllMataKuliah()
     {
         $mataKuliah = MataKuliah::all();
 
@@ -57,7 +57,7 @@ class MataKuliahController extends Controller
         }
 
         // Cek apakah mahasiswa sudah terdaftar pada mata kuliah tersebut
-        if ($mahasiswa->matakuliahs()->where('mkId', $mkId)->exists()) {
+        if ($mahasiswa->matakuliah()->where('mkId', $mkId)->exists()) {
             return response()->json([
                 'status' => 'Duplicate',
                 'message' => 'Mahasiswa sudah terdaftar pada Mata Kuliah tersebut'
@@ -65,7 +65,7 @@ class MataKuliahController extends Controller
         }
 
         //Menambahkan mata kuliah ke dalam mahasiswa
-        $mahasiswa->matakuliahs()->attach($mkId);
+        $mahasiswa->matakuliah()->attach($mkId);
 
         return response()->json([
             'status' => 'Success',
@@ -102,7 +102,7 @@ class MataKuliahController extends Controller
         }
 
         // Cek apakah mahasiswa sudah terdaftar pada mata kuliah tersebut
-        if ($mahasiswa->matakuliahs()->where('mkId', $mkId)->exists()) {
+        if (!$mahasiswa->matakuliah()->where('mkId', $mkId)->exists()) {
             return response()->json([
                 'status' => 'Duplicate',
                 'message' => 'Mahasiswa sudah terdaftar pada Mata Kuliah tersebut'
@@ -110,7 +110,7 @@ class MataKuliahController extends Controller
         }
 
         //Menghapus mata kuliah dari mahasiswa
-        $mahasiswa->matakuliahs()->detach($mkId);
+        $mahasiswa->matakuliah()->detach($mkId);
 
         return response()->json([
             'status' => 'Success',

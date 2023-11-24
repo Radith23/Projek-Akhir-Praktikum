@@ -44,7 +44,7 @@ class MahasiswaController extends Controller
     // get Mahasiswa By NIM
     public function getMahasiswaByNim(Request $request, $nim)
     {
-        $mahasiswa = Mahasiswa::where('nim', $nim)->with('prodi', 'matakuliahs')->first();
+        $mahasiswa = Mahasiswa::where('nim', $nim)->with('prodi', 'matakuliah')->first();
 
         if ($mahasiswa) {
             return response()->json([
